@@ -1,0 +1,82 @@
+//ZADANIE 1
+1)
+CREATE TABLE postac(
+id_postaci INT NOT NULL AUTO_INCREMENT,
+nazwa VARCHAR(40),
+rodzaj ENUM("wiking","ptak","kobieta"),
+data_ur DATE,
+wiek INT CHECK(wiek>0),
+PRIMARY KEY (id_postaci)
+);
+
+2)
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek) VALUES('Bjorn', 'wiking', '2002-07-20', '20');
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek) VALUES('Drozd', 'ptak', '2018-11-05', '4');
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek) VALUES('Tesciowa', 'kobieta', '1934-03-25', '82');
+
+3)
+UPDATE postac set wiek='88' where rodzaj='kobieta';
+
+//ZADANIE 2
+1)
+CREATE TABLE walizka(
+id_walizka INT NOT NULL AUTO_INCREMENT,
+pojemnosc INT CHECK(pojemnosc>0),
+kolor ENUM("rozowy","czerwony","teczowy","zolty"),
+id_wlasciciela INT,
+FOREIGN KEY(id_wlasciciela) REFERENCES trzcinskik.postac(id_postaci) ON DELETE CASCADE,
+PRIMARY KEY (id_walizki)
+);
+2)
+ALTER TABLE walizka modify column kolor ENUM("rozowy","czerwony","teczowy","zolty") default "rozowy";
+
+3)
+INSERT INTO walizka(pojemnosc, kolor, id_wlasciciela) values(20, "czerwony", 1);
+
+
+//ZADANIE 4
+1)
+ create table izba(
+    -> adres_budynku varchar(40),
+    -> nazwa_izby varchar(40),
+    -> metraz int check(metraz>0),
+    -> wlasciciel int,
+    -> foreign key(wlasciciel) references trzcinskik.postac(id_postaci) on delete set null,
+    -> primary key (adres_budynku, nazwa_izby)
+    -> );
+
+2)
+alter table izba add kolor enum("rozowy","czerwony","teczowy","zolty")default "czarny"  after metraz;
+
+3)
+ insert into izba(adres_budynku, nazwa_izby, metraz, kolor, wlasciciel) values("Olsztyn", "spizarnia", 80, "zolty",1);
+
+//ZADANIE 4
+
+1)
+create table przetwory(
+    -> id_przetworu int,
+    -> rok_produkcji int default "1654",
+    -> id_wykonawcy int,
+       zawartosc varchar(40),
+    -> dodatek varchar(40) default "papryczka_chilli",
+    -> id_konsumenta int,
+    -> foreign key(id_wykonawcy) references trzcinskik.postac(id_postaci),
+    -> foreign key(id_konsumenta) references trzcinskik.postac(id_postaci),
+    -> primary key(id_przetworu)
+    -> );
+
+2)
+insert into przetwory(id_przetworu, rok_produkcji,id_wykonawcy,zawartosc,dodatek,id_konsumenta) value(1,2022,1,"bigos","papryczka_chilli",1);
+
+//ZADANIE 5
+
+1) insert into postac(nazwa,rodzaj,data_ur,wiek) values("Bork", "wiking","1999-12-12","23");
+   insert into postac(nazwa,rodzaj,data_ur,wiek) values("Ark", "wiking","1389-03-25","633");
+   insert into postac(nazwa,rodzaj,data_ur,wiek) values("Frodi", "wiking","400-05-06","1622");
+   insert into postac(nazwa,rodzaj,data_ur,wiek) values("Galti", "wiking","1583-09-19","439");
+   insert into postac(nazwa,rodzaj,data_ur,wiek) values("Kalf", "wiking","261-01-01","1761");
+
+
+
+
