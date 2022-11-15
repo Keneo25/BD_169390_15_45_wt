@@ -78,5 +78,29 @@ insert into przetwory(id_przetworu, rok_produkcji,id_wykonawcy,zawartosc,dodatek
    insert into postac(nazwa,rodzaj,data_ur,wiek) values("Kalf", "wiking","261-01-01","1761");
 
 
+  create table statek (
+  nazwa_statku varchar(40),
+  rodzaj_statku enum('maly', 'sredni', 'duzy'),
+  data_wodowania date, 
+  max_ladownosc int check(max_ladownosc>0),
+  primary   key (nazwa_statku) );
+
+  insert into statek (nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc) values ("pierwszy", "duzy", "1000-12-12", 15);
+  insert into statek (nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc) values ("drugi","sredni", "2002-10-04", 10);
+
+  alter table postac add funkcja varchar(40);
+
+  update postac set funkcja = "kapitan" where id_postaci = 1;
+
+  alter table postac add statek varchar(40);
+
+  alter table postac add foreign key (statek) references statek(nazwa_statku);
+
+  update postac set statek = "pierwszy" where id_postaci != 3;
+
+  delete from izba where nazwa_izby = "spizarnia";
+
+  drop table izba;
+
 
 
