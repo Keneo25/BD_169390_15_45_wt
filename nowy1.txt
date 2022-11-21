@@ -24,7 +24,23 @@ b)alter table postac modify rodzaj enum("wiking","ptak","kobieta","syrena");
 
 c) insert into postac(pesel, id_postaci,nazwa,rodzaj,data_ur,wiek) value ("75352965740","10","Gertruda Nieszczera","syrena","1968-12-12","54");
 
+//ZADANIE 3
+a) update postac nazwa_statku = "kraken" where nazwa regexp "a";
 
+b) update statek set max_ladownosc = max_ladownosc * 0.7 where data_wodowania >= "1901-01-01" and data_wodowania <="2000-12-31";
+
+c)alter table postac add check(wiek < 1000);
+
+//ZADANIE 4
+
+a) alter table postac modify rodzaj enum("wiking","ptak","kobieta","syrena","waz");
+   insert into postac (pesel,id_postaci,nazwa,rodzaj,data_ur,wiek) values ("86590765481",11,"Loko","waz","1999-11-01","23");
+
+b)create table marynarz select*from postac where nazwa_statku is not null;
+
+c)alter table marynarz add primary key(pesel);
+  
+dokończyć
 
 
 
