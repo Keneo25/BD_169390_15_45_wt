@@ -18,7 +18,15 @@ b)select * from zasob where waga >= 2.00 and waga <=5.00;
 
 c)select * from kreatura where nazwa like "%or%" and udzwig >= 30 and udzwig <=70;
 
+
 //ZADANIE 3
+
+a)
+b) select * from zasob order by waga ASC;
+c)
+
+
+//ZADANIE 4
 
 a)select * from zasob where rodzaj is null;
 
