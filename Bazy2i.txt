@@ -25,10 +25,12 @@ b)alter table postac modify rodzaj enum("wiking","ptak","kobieta","syrena");
 c) insert into postac(pesel, id_postaci,nazwa,rodzaj,data_ur,wiek) value ("75352965740","10","Gertruda Nieszczera","syrena","1968-12-12","54");
 
 //ZADANIE 3
-a) update postac nazwa_statku = "kraken" where nazwa regexp "a";
+a)  update postac set statek = 'pierwszy' where nazwa regexp 'a' and rodzaj !='kobieta';
+    update postac set statek = 'pierwszy' where nazwa like 'a';
+    
 
-b) update statek set max_ladownosc = max_ladownosc * 0.7 where data_wodowania >= "1901-01-01" and data_wodowania <="2000-12-31";
 
+b) update statek set max_ladownosc = max_ladownosc * 0.7 where data_wodowania >='1901-01-01' and data_wodowania <='2000-12-31';
 c)alter table postac add check(wiek < 1000);
 
 //ZADANIE 4
@@ -36,11 +38,45 @@ c)alter table postac add check(wiek < 1000);
 a) alter table postac modify rodzaj enum("wiking","ptak","kobieta","syrena","waz");
    insert into postac (pesel,id_postaci,nazwa,rodzaj,data_ur,wiek) values ("86590765481",11,"Loko","waz","1999-11-01","23");
 
-b)create table marynarz select*from postac where nazwa_statku is not null;
+b) create table marynarz select*from postac where statek is not null;
 
 c)alter table marynarz add primary key(pesel);
+  alter table marynarz add foreign key(statek) references statek(nazwa_statku);
+  alter table marynarz add check(wiek >0 and wiek <=1000);
+
+//ZADANIE 5
+
+update postac set statek = null where statek = 'pierwszy';
+  update marynarz set statek = null where statek = 'pierwszy';
   
-dokończyć
+delete from postac where id_postaci = 7;
+
+alter table postac drop foreign key marynarz;
+alter table postac drop foreign key postac_ibfk_1;
+alter table marynarz drop foreign key marynarz_ibfk_1;
+delete from statek;
+alter table postac drop column statek;
+alter table marynarz drop column statek;
+drop table statek;
+
+ create table zwierz(
+    -> zwierz_id int primary key auto_increment,
+    -> nazwa varchar(30),
+    -> wiek int
+    -> );
+    
+    insert into zwierz(nazwa, wiek) select nazwa, wiek from postac where rodzaj ="waz";
+    insert into zwierz(nazwa, wiek) select nazwa, wiek from postac where rodzaj ="ptak";
+    
+
+
+
+
+
+
+
+  
+  
 
 
 
