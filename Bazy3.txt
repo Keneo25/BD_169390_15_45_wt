@@ -1,0 +1,13 @@
+//ZADANIE 1
+a)create table trzcinskik.kreatura as select * from wikingowie.kreatura;
+  create table trzcinskik.zasob as select * from wikingowie.zasob;
+  create table trzcinskik.ekwipunek as select * from wikingowie.ekwipunek;
+
+b)select*from zasob;
+
+c) select * from zasob where rodzaj="jedzenie";
+
+d)select idZasobu, ilosc from zasob where idZasobu in (1,3,5) ;
+
+
+
