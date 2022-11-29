@@ -1,0 +1,15 @@
+//ZADANIE 1
+a)select avg(waga) from kreatura;
+
+b)select avg(waga),rodzaj from kreatura group by rodzaj;
+
+
+c)select avg(1700 - year(dataUr)),rodzaj from kreatura group by rodzaj;
+
+//ZADANIE 2
+
+a)select sum(waga),rodzaj from zasob group by rodzaj;
+
+b)
+
+c)
