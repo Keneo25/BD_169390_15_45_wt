@@ -21,13 +21,28 @@ c)select * from kreatura where nazwa like "%or%" and udzwig >= 30 and udzwig <=7
 
 //ZADANIE 3
 
-a)
+a) select * from kreatura where month(dataUr) between 7 and 8;
 b) select * from zasob order by waga ASC;
-c)
+c) select * from kreatura order by dataUr desc limit 5;
+
 
 
 //ZADANIE 4
 
 a)select * from zasob where rodzaj is null;
 
-b)
+b)select concat(nazwa,'-',rodzaj) as 'nazwa-rodzaj' from kreatura where rodzaj like 'wi%';
+
+c)
+
+//ZADANIE 5
+a)
+b) select * from zasob where rodzaj is NULL;
+c)select * from zasob where nazwa like 'ba%' or nazwa like '%os' order by nazwa asc;
+
+
+
+
+
+
+
