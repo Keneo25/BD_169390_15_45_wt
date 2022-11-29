@@ -33,10 +33,10 @@ a)select * from zasob where rodzaj is null;
 
 b)select concat(nazwa,'-',rodzaj) as 'nazwa-rodzaj' from kreatura where rodzaj like 'wi%';
 
-c)
+c)SELECT idZasobu,nazwa, waga * ilosc, dataPozyskania, rodzaj FROM zasob WHERE dataPozyskania BETWEEN '2000-01-01' AND '2007-12-31'
 
 //ZADANIE 5
-a)
+a) SELECT nazwa, waga - (waga / 100 * 30), waga / 100 * 30 FROM zasob;
 b) select * from zasob where rodzaj is NULL;
 c)select * from zasob where nazwa like 'ba%' or nazwa like '%os' order by nazwa asc;
 
