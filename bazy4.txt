@@ -10,7 +10,7 @@ c)select avg(1700 - year(dataUr)),rodzaj from kreatura group by rodzaj;
 
 a)select sum(waga),rodzaj from zasob group by rodzaj;
 
-b)select nazwa,AVG(waga) as srednia_waga, sum(ilosc), sum(waga) from zasob group by nazwa having sum(ilosc) >= 4 and sum(waga) > 10;
+b)
 
 
 c)select rodzaj, count(distinct(nazwa)) from zasob group by rodzaj having count(distinct(nazwa)) > 1;
