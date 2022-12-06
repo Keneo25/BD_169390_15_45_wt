@@ -10,6 +10,25 @@ c)select avg(1700 - year(dataUr)),rodzaj from kreatura group by rodzaj;
 
 a)select sum(waga),rodzaj from zasob group by rodzaj;
 
-b)
+b)select nazwa,AVG(waga) as srednia_waga, sum(ilosc), sum(waga) from zasob group by nazwa having sum(ilosc) >= 4 and sum(waga) > 10;
 
-c)
+
+c)select rodzaj, count(distinct(nazwa)) from zasob group by rodzaj having count(distinct(nazwa)) > 1;
+
+//ZADANIE 3
+
+a)SELECT kreatura.nazwa, ekwipunek.idZasobu AS ekwipunek, zasob.idZasobu  FROM kreatura LEFT JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu;
+
+b)SELECT kreatura.nazwa, zasob.nazwa FROM kreatura JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury LEFT JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu;
+
+c)select kreatura.idKreatury, kreatura.nazwa, ekwipunek.idZasobu from kreatura left join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury havin
+g idZasobu is NULL;
+
+//ZADANIE 4
+a)SELECT kreatura.nazwa, YEAR(kreatura.dataUr) AS rokUr, zasob.idZasobu, zasob.nazwa from kreatura
+CROSS JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu HAVING rokUr > 1670 AND rokUr < 1680;
+
+b)SELECT kreatura.nazwa, zasob.idZasobu, zasob.rodzaj FROM kreatura  JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury LEFT JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu HAVING rodzaj='jedzenie' ORDER BY kreatura.dataUr ASC  LIMIT 5;
+
+
+c)SELECT e.nazwa, m.nazwa, e.idKreatury, m.idKreatury FROM kreatura e INNER join kreatura m ON (e.idKreatury - m.idKreatury) = 5;
