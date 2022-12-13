@@ -1,0 +1,20 @@
+//ZADANIE 1
+1) create table uczestnicy as select * from wikingowie.uczestnicy;
+   create table kreatury as select * from wikingowie.kreatura;
+   create table etapy_wyprawy  as select * from wikingowie.etapy_wyprawy;
+   create table sektor  as select * from wikingowie.sektor;
+   create table wyprawa  as select * from wikingowie.wyprawa;
+
+   2)select * from kreatury left join uczestnicy on kreatury.idKreatury = uczestnicy.id_uczestnika where id_wyprawy is null ;
+
+    3)
+
+   //ZADANIE 2
+
+   1)  select nazwa, group_concat(nazwa-nazwa), from wyprawa group by nazwa; zle
+
+   2) select wyprawa.nazwa,sum(ekwipunek.ilosc) as ilosc-wyprawy from wyprawa natural join uczestnicy join ekwipunek on
+uczestnwy from wypstnika = ekwipunek.idKreatury group by wyprawa.nazwa;
+
+
+   
