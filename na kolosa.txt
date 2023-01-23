@@ -1,0 +1,31 @@
+
+create table Benefit1(id_benefitu int primary key, nazwa varchar(30) not null,cena int,opis long varchar,rodzaj enum('lekarz','sport','przedszkole'));
+create table Uzytkownik1(id_uzytkownika int primary key not null,rodzaj enum('pracownik','prezes','rodzina') default 'pracownik',imie varchar(32) not null,nazwisko varchar(20) not null,zarobki int check(zarobki >0) default '2000',dataur date,id_benefitu int,foreign key(id_benefitu) references Benefit1(id_benefitu) on delete cascade );       
+insert into Benefit1 like select * from wikinngowie.zasob 
+insert into  Benefit1 (id_benefitu,nazwa,cena,rodzaj) select idZasobu,nazwa,waga,"sport" from wikinngowie.zasob; 
+Alter table Uzytkownik alter rodzaj set default 'prezes';
+update Benefit1 set nazwa = 'Granie' where nazwa like '%an%';
+delete from Benefit1 where cena > '76';
+
+(SELECT)
+a)
+select * from zawodnik where klub is not null and year(dataUrodzenia) between 1985 and 1999  order by dataUrodzenia asc limit 3;
+
+select * from zawodnik where klub is not null and year(dataUrodzenia) >=1985 and year(dataUrodzenia) <=1999 order by dataUrodzenia asc limit 3;
+
+b)
+select kraj.idKraju,count(zawodnik.idZawodnika) from zawodnik join kraj on zawodnik.idKraju = kraj.idKraju where year(zawodnik.dataUrodzenia)  between 1990 and 1999 group by kraj.idKraju;  
+
+c)
+select miejsce_zawodow.nazwa,avg(wyniki.wynik) from wyniki join konkurencja on wyniki.idKonkurencji = konkurencja.idKonkurencji join miejsce_zawodow on konkurencja.idMiejsca =  miejsce_zawodow.idMiejsca WHERE konkurencja.nazwaKonkurencji = 'bieg' GROUP BY konkurencja.idKonkurencji HAVING SUM(wyniki.idZawodnika) >= 4; 
+
+d)
+ select group_concat(k.imie,',',k.nazwisko,'-',z.imie','z.nazwisko) from zawodnik k join zawodnik z on year(k.dataUrodzenia) = year(z.dataUrodzenia) group by YEAR(z1.dataUrodzenia) ORDER BY YEAR(z1.dataUrodzenia);     
+
+e)
+select zawodnik.idZawodnika   
+
+f)select * from kraj left join miejsce_zawodow on kraj.idKraju = miejsce_zawodow.idKraju where idMiejsca is null;
+
+g)
+ select kraj.nazwa from kraj join miejsce_zawodow on kraj.idKraju = miejsce_zawodow.idKraju GROUP BY kraj.idKraju having count(miejsce_zawodow.idKraju) =1 order by  kraj.nazwa asc ;
